@@ -27,13 +27,9 @@ jobs:
       run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV  # Extracts version from the tag and stores it in an environment variable
 
     - name: Create GitHub release
-      uses: gh-cli/gh-action@v1  # Uses GitHub CLI to create the release
+      uses: softprops/action-gh-release@v1  # Uses the correct action to create the GitHub release
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        version: ${{ env.VERSION }}  # Uses the extracted version number
-
-    - name: Upload JAR as release asset
-      uses: softprops/action-gh-release@v1  # This action uploads artifacts to the release
-      with:
-        files: CalculatorApp/target/CalculatorApp-*.jar  # Change path based on where the JAR is located after the build
-        tag_name: ${{ env.VERSION }}  # Uses the extracted version for the release tag
+        files: CalculatorApp/target/CalculatorApp-*.jar  # Attach the JAR file created by Maven
+        tag_name: ${{ env.VERSION }}  # Use the extracted version as the release tag
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token to authenticate with the GitHub API
