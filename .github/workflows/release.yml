@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - 'v*.*.*'  # This triggers the workflow when a tag like v1.2.3 is pushed
+      
+permissions:
+  contents: write  # Grant write access to the repository
 
 jobs:
   release:
