@@ -32,4 +32,4 @@ jobs:
         files: CalculatorApp/target/CalculatorApp-*.jar  # Attach the JAR file created by Maven
         tag_name: ${{ env.VERSION }}  # Use the extracted version as the release tag
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the custom PAT token stored in GitHub Secrets
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the custom PAT token stored in GitHub Secrets 
